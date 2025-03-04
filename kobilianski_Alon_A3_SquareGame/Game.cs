@@ -2,45 +2,51 @@
 using System;
 using System.Numerics;
 
-// The namespace your code is in.
-namespace MohawkGame2D
+
+namespace MohawkGame2D;
+public class Game
 {
-    /// <summary>
-    ///     Your game code goes inside this class!
-    /// </summary>
-    public class Game
+   //Place Variables Here
+    Player player; 
+
+    //Setup For the Game
+    public void Setup()
     {
-        // Place your variables here:
-        Player player;
+        Window.SetTitle("SquareGame");
+        Window.SetSize(400, 400);     
 
-        /// <summary>
-        ///     Setup runs once before the game loop begins.
-        /// </summary>
-        public void Setup()
+        player = new Player();
+    }
+    //Updates For the Game
+    public void Update()
+    {
+        Window.ClearBackground(Color.Blue);
+       
+        if (Input.IsKeyboardKeyDown(KeyboardInput.A))
         {
-            Window.SetTitle("SquareGame");
-            Window.SetSize(400, 400);
-            Window.ClearBackground(Color.Blue);
-            
-            
-            player = new Player();
-
+            player.MoveLeft();
         }
 
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
-        public void Update()
+        if (Input.IsKeyboardKeyDown(KeyboardInput.D))
         {
-            player.Render();
-
-            Draw.LineSize = 1;
-            Draw.LineColor = Color.Black;
-            Draw.FillColor = Color.Black;
-            Draw.Rectangle(0, 320, 400, 320);
-
-            
+            player.MoveRight();
         }
+
+        if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
+        {
+            player.Jump();
+        }
+
+        player.Update();  
+        player.Render(); 
+
+        
+        Draw.LineSize = 1;
+        Draw.LineColor = Color.Black;
+        Draw.FillColor = Color.Black;
+        Draw.Rectangle(0, 320, 400, 320);
     }
 
 }
+
+
