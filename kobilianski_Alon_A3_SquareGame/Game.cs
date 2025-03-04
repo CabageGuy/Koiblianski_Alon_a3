@@ -7,7 +7,8 @@ namespace MohawkGame2D;
 public class Game
 {
    //Place Variables Here
-    Player player; 
+    Player player;
+    Objects spikes;
 
     //Setup For the Game
     public void Setup()
@@ -16,12 +17,13 @@ public class Game
         Window.SetSize(400, 400);     
 
         player = new Player();
+        spikes = new Objects();
     }
     //Updates For the Game
     public void Update()
     {
         Window.ClearBackground(Color.Blue);
-       
+
         if (Input.IsKeyboardKeyDown(KeyboardInput.A))
         {
             player.MoveLeft();
@@ -37,15 +39,24 @@ public class Game
             player.Jump();
         }
 
-        player.Update();  
-        player.Render(); 
+        player.Update();
+        player.Render();
+        spikes.Render();
 
-        
+
+        if (spikes.IsCollidingWith(player))
+        {
+            Console.WriteLine("touched object");
+            player.position = new Vector2(100, 280);  
+        }
+
+
         Draw.LineSize = 1;
         Draw.LineColor = Color.Black;
         Draw.FillColor = Color.Black;
         Draw.Rectangle(0, 320, 400, 320);
     }
+
 
 }
 
