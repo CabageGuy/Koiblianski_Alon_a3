@@ -1,50 +1,81 @@
-﻿using System;
+﻿using MohawkGame2D;
 using System.Numerics;
 
-namespace MohawkGame2D
+public class Objects
 {
-    public class Objects
+    public Vector2 position;
+    private int size = 40;
+
+    // Make spikes public so we can check it in Game.cs
+    public static Objects[] spikes;
+
+    public Objects(Vector2 startPosition)
     {
-        public Vector2 position;
-        public float width = 50;  
-        public float height = 50; 
+        position = startPosition;
+    }
 
-        public Objects()
+    public static void SetupSpikes()
+    {
+        spikes = new Objects[]
         {
-            // Positioning it on top of the rectangle
-            position = new Vector2(320, 270);
-        }
+            new Objects(new Vector2(200, 280)),
+            new Objects(new Vector2(250, 280)),
+            new Objects(new Vector2(600, 280))
+        };
+    }
 
-        public void Render()
+
+
+  public static void RenderAll(Vector2 cameraOffset)
+    {
+        if (spikes == null) return;
+
+        foreach (var spike in spikes)
         {
-            Draw.LineSize = 1;
-            Draw.FillColor = Color.White;
-            Draw.LineColor = Color.White;
-
-            // Triangle points
-            float x1 = position.X;
-            float y1 = position.Y + height;
-
-            float x2 = position.X + width;
-            float y2 = position.Y + height;
-
-            float x3 = position.X + (width / 2);
-            float y3 = position.Y;
-
-            // Draw triangle
-            Draw.Triangle(x1, y1, x2, y2, x3, y3);
+            spike.Render(cameraOffset);
         }
+    }
 
-        public bool IsCollidingWith(Player player)
+    // Check if player collides with any spike
+    public static bool CheckCollisions(Player player)
+    {
+        if (spikes == null) return false;
+
+        foreach (var spike in spikes)
         {
-            float playerWidth = 40;  
-            float playerHeight = 40; 
-
-            return (player.position.X < position.X + width &&
-                    player.position.X + playerWidth > position.X &&
-                    player.position.Y < position.Y + height &&
-                    player.position.Y + playerHeight > position.Y);
+            if (spike.IsCollidingWith(player))
+            {
+                return true; // Collision detected
+            }
         }
+        return false;
+    }
 
+    public void Render(Vector2 cameraOffset)
+    {
+        Draw.FillColor = Color.White;
+
+        int baseX = (int)(position.X - cameraOffset.X);
+        int baseY = (int)position.Y;
+
+        int x1 = baseX;
+        int y1 = baseY + size;
+
+        int x2 = baseX + size;
+        int y2 = baseY + size;
+
+        int x3 = baseX + (size / 2);
+        int y3 = baseY; // Peak
+
+        // Draw the triangle
+        Draw.Triangle(x1, y1, x2, y2, x3, y3);
+    }
+
+    public bool IsCollidingWith(Player player)
+    {
+        return player.position.X < position.X + size &&
+               player.position.X + 40 > position.X &&
+               player.position.Y < position.Y + size &&
+               player.position.Y + 40 > position.Y;
     }
 }

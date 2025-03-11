@@ -8,7 +8,7 @@ public class Player
     public Vector2 position;
     public Vector2 velocity;
     public float speed = 5f;
-    public float jumpStrength = 15f;
+    public float jumpStrength = 12f;
     public float gravity = 0.6f;
     public bool isJumping = false;
 
@@ -17,13 +17,17 @@ public class Player
         position = new Vector2(40, 280); 
     }
 
-    public void Render()
+    public void Render(Vector2 cameraOffset)
     {
-        Draw.LineSize = 1;
-        Draw.LineColor = Color.Black;
         Draw.FillColor = Color.Red;
-        Draw.Rectangle(position.X, position.Y, 40, 40); 
+
+        int playerWidth = 40;  // Increase width
+        int playerHeight = 40; // Increase height
+
+        Draw.Rectangle((int)(position.X - cameraOffset.X), (int)position.Y, playerWidth, playerHeight);
     }
+
+
 
     public void Update()
     {
