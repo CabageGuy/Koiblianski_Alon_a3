@@ -22,6 +22,7 @@ public class Coins
         coins = new Coins[]
         {
             new Coins(220, 250),
+            new Coins(280, 250),
             new Coins(420, 250),
             new Coins(620, 250)
         };
