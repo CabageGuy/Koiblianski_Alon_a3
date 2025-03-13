@@ -23,8 +23,11 @@ public class Coins
         {
             new Coins(220, 250),
             new Coins(280, 250),
-            new Coins(420, 250),
-            new Coins(620, 250)
+            new Coins(470, 250),
+            new Coins(620, 250),
+            new Coins(800, 280),
+            new Coins(860, 280),
+            new Coins(920, 280),
         };
     }
 

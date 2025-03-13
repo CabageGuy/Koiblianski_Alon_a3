@@ -20,7 +20,10 @@ public class Objects
         {
             new Objects(new Vector2(200, 280)),
             new Objects(new Vector2(250, 280)),
-            new Objects(new Vector2(600, 280))
+            new Objects(new Vector2(450, 280)),
+            new Objects(new Vector2(600, 280)),
+            new Objects(new Vector2(640, 280))
+
         };
     }
 

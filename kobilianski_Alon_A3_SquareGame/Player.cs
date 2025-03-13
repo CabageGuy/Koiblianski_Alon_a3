@@ -1,33 +1,29 @@
-﻿using System;
+﻿using MohawkGame2D;
 using System.Numerics;
-using MohawkGame2D;
 
 public class Player
 {
-    //Vari
+    // Variables
     public Vector2 position;
     public Vector2 velocity;
     public float speed = 5f;
     public float jumpStrength = 12f;
     public float gravity = 0.6f;
     public bool isJumping = false;
+    public bool canDoubleJump = false; // ✅ Allows a second jump
 
     public Player()
     {
-        position = new Vector2(40, 280); 
+        position = new Vector2(40, 280);
     }
 
     public void Render(Vector2 cameraOffset)
     {
         Draw.FillColor = Color.Red;
-
-        int playerWidth = 40;  // Increase width
-        int playerHeight = 40; // Increase height
-
+        int playerWidth = 40;
+        int playerHeight = 40;
         Draw.Rectangle((int)(position.X - cameraOffset.X), (int)position.Y, playerWidth, playerHeight);
     }
-
-
 
     public void Update()
     {
@@ -36,15 +32,15 @@ public class Player
         position.Y += velocity.Y;
 
         // Ground collision
-        if (position.Y >= 280) 
+        if (position.Y >= 280)
         {
             position.Y = 280;
             velocity.Y = 0;
             isJumping = false;
+            canDoubleJump = false; // ✅ Reset double jump when touching the ground
         }
     }
 
-    // Making the Player Move 
     public void MoveLeft()
     {
         position.X -= speed;
@@ -57,14 +53,18 @@ public class Player
 
     public void Jump()
     {
-        if (!isJumping)
+        if (!isJumping) // First jump
         {
             velocity.Y = -jumpStrength;
             isJumping = true;
         }
+        else if (canDoubleJump) // ✅ Second jump if boost is active
+        {
+            velocity.Y = -jumpStrength;
+            canDoubleJump = false; // Use up the extra jump
+        }
     }
 
-    
     public Vector2 GetPosition()
     {
         return position;
