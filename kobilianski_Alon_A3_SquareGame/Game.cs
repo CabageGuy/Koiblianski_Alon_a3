@@ -10,7 +10,7 @@ public class Game
     int score = 0;
     JumpBooster[] jumpBoosters;
 
-
+  
 
     public void Setup()
     {
@@ -19,17 +19,18 @@ public class Game
 
         player = new Player();
 
-        // Initialize spikes and coins
+       
         Objects.SetupSpikes();
         Coins.SetupCoins();
 
-        // ✅ Initialize Jump Boosters
+
         jumpBoosters = new JumpBooster[]
         {
-        
-            new JumpBooster(160, 230), 
-        
+
+            new JumpBooster(200, 230),
+
         };
+  
     }
     public void Update()
     {
@@ -43,20 +44,20 @@ public class Game
             return;
         }
 
-        // Render Spikes
+      
         Objects.RenderAll(cameraOffset);
 
-        // ✅ Only process jump boosters if they are initialized
+     
         if (jumpBoosters != null)
         {
             foreach (var booster in jumpBoosters)
             {
                 if (booster.CheckCollision(player))
                 {
-                    player.canDoubleJump = true; // ✅ Grant extra jump
-                    booster.IsActive = false; // ✅ Hide booster after use
+                    player.canDoubleJump = true; 
+                    booster.IsActive = false; 
                 }
-                booster.Render(cameraOffset); // Render active boosters
+                booster.Render(cameraOffset); 
             }
         }
 
