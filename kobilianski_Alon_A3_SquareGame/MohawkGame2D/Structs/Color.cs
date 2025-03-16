@@ -168,7 +168,7 @@ namespace MohawkGame2D
                 raw = 0;
 
             // Sanitive value
-            value.Replace("#", "");
+           value.Replace("#", "");
             value.Trim();
             value = value.ToLower();
 
@@ -186,7 +186,7 @@ namespace MohawkGame2D
                 }
             }
 
-            // Validate string length
+            // Validate string lengthValue contains non-hexadecimal character 
             bool validLength =
                 value.Length == 3 || // "rgb"
                 value.Length == 4 || // "rgba"

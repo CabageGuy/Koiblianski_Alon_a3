@@ -4,8 +4,8 @@ using System.Numerics;
 public class JumpBooster
 {
     public Vector2 Position;
-    public int Radius = 20; // ✅ Circle size
-    public bool IsActive = true; // ✅ Disappear after collection
+    public int Radius = 20; 
+    public bool IsActive = true; 
 
     public JumpBooster(float x, float y)
     {

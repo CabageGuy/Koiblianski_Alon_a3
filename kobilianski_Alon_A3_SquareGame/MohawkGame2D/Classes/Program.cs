@@ -20,6 +20,7 @@ public static class Program
     private const ConfigFlags WindowConfigFlags = ConfigFlags.AlwaysRunWindow | ConfigFlags.VSyncHint;
 
     private static void Main()
+    
     {
         // Raylib one-time setup
         Raylib.SetConfigFlags(WindowConfigFlags);
