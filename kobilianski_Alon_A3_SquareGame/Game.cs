@@ -10,6 +10,7 @@ public class Game
     int score = 0;
     JumpBooster[] jumpBoosters;
     Color DarkBlue = new Color(107,171,255 );
+    Music backgroundMusic;
     
     public void Setup()
     {
@@ -17,6 +18,8 @@ public class Game
         Window.SetSize(400, 400);
 
         InitializeGame();
+        backgroundMusic = Audio.LoadMusic("\"C:\\Users\\Alon\\source\\repos\\Koiblianski_Alon_a3\\assets\\Sound\\BGmusic.mp3\"");
+        Audio.Play(backgroundMusic);
     }
 
     public void Update()
