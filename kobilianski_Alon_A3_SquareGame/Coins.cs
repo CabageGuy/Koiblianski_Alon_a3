@@ -7,18 +7,21 @@ public class Coins
     public Vector2 position;
     private int radius = 20;
     public bool isCollected = false;
-
+   
+    public static Sound CoinSound;
     // Static array to hold all coins
     public static Coins[] coins;
 
     public Coins(float x, float y)
     {
         position = new Vector2(x, y);
+        
     }
-
+    
     // Initialize coins array
     public static void SetupCoins()
     {
+        CoinSound = Audio.LoadSound("../../../../assets/Sound/Coin.MP3");
         coins = new Coins[]
         {
             new Coins(220, 250),
@@ -67,26 +70,33 @@ public class Coins
 
         foreach (var coin in coins)
         {
+            
             if (coin.IsCollidingWith(player) && !coin.isCollected)
             {
+               
                 coin.isCollected = true;
                 score += 50;
+                Audio.Play(CoinSound);
                 Console.WriteLine($"Coin collected! Score: {score}");
+               
             }
         }
     }
 
     public void Render(Vector2 cameraOffset)
     {
+        
         if (!isCollected)
         {
             Draw.FillColor = Color.Yellow;
             Draw.Circle((int)(position.X - cameraOffset.X), (int)position.Y, radius);
+            
         }
     }
 
     public bool IsCollidingWith(Player player)
     {
+        
         float playerLeft = player.position.X;
         float playerRight = player.position.X + 40;
         float playerTop = player.position.Y;
@@ -98,6 +108,7 @@ public class Coins
         float coinBottom = position.Y + radius;
 
         bool isOverlapping = !(playerLeft > coinRight || playerRight < coinLeft || playerTop > coinBottom || playerBottom < coinTop);
+        
 
         return !isCollected && isOverlapping;
     }

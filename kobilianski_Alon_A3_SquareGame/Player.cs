@@ -10,11 +10,13 @@ public class Player
     public float jumpStrength = 12f;
     public float gravity = 0.6f;
     public bool isJumping = false;
-    public bool canDoubleJump = false; // ✅ Allows a second jump
+    public bool canDoubleJump = false;
+    Sound JumpSound;
 
     public Player()
     {
         position = new Vector2(40, 280);
+        JumpSound = Audio.LoadSound("../../../../assets/Sound/Jump.MP3");
     }
 
     public void Render(Vector2 cameraOffset)
@@ -37,7 +39,7 @@ public class Player
             position.Y = 280;
             velocity.Y = 0;
             isJumping = false;
-            canDoubleJump = false; // ✅ Reset double jump when touching the ground
+            canDoubleJump = false; 
         }
     }
 
@@ -57,11 +59,14 @@ public class Player
         {
             velocity.Y = -jumpStrength;
             isJumping = true;
+            Audio.Play(JumpSound);
+            
         }
-        else if (canDoubleJump) // ✅ Second jump if boost is active
+        else if (canDoubleJump) 
         {
             velocity.Y = -jumpStrength;
             canDoubleJump = false; // Use up the extra jump
+            
         }
     }
 

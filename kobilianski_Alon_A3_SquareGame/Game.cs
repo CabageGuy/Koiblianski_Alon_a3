@@ -11,15 +11,22 @@ public class Game
     JumpBooster[] jumpBoosters;
     Color DarkBlue = new Color(107,171,255 );
     Music backgroundMusic;
+    Sound JumpBoost;
+    Sound GameOver;
+    
     
     public void Setup()
     {
         Window.SetTitle("SquareGame");
         Window.SetSize(400, 400);
-
+        
         InitializeGame();
-        backgroundMusic = Audio.LoadMusic("\"C:\\Users\\Alon\\source\\repos\\Koiblianski_Alon_a3\\assets\\Sound\\BGmusic.mp3\"");
+        backgroundMusic = Audio.LoadMusic("../../../../assets/Sound/BGmusic.MP3");
+        JumpBoost = Audio.LoadSound("../../../../assets/Sound/JumpBoost.MP3");
+        GameOver = Audio.LoadSound("../../../../assets/Sound/GameOver.MP3");
         Audio.Play(backgroundMusic);
+        
+
     }
 
     public void Update()
@@ -54,6 +61,7 @@ public class Game
                 {
                     player.canDoubleJump = true;
                     booster.IsActive = false;
+                    Audio.Play(JumpBoost);
                 }
                 booster.Render(cameraOffset);
             }
@@ -64,6 +72,8 @@ public class Game
         {
             Console.WriteLine("Touched object - Game Over!");
             isGameOver = true;
+            Audio.Stop(backgroundMusic);
+            Audio.Play(GameOver);
         }
 
         // Player Movement
@@ -102,6 +112,8 @@ public class Game
         isGameOver = false;
         score = 0;
         cameraOffset = Vector2.Zero;
+        Audio.Stop(GameOver);
+        Audio.Play(backgroundMusic);
     }
 
     public void InitializeGame()
