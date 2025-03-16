@@ -10,7 +10,7 @@ public class Game
     int score = 0;
     JumpBooster[] jumpBoosters;
     Color DarkBlue = new Color(107,171,255 );
-
+    
     public void Setup()
     {
         Window.SetTitle("SquareGame");
@@ -121,6 +121,8 @@ public class Game
             new JumpBooster(1640, 200),
             new JumpBooster(1840, 200),
             new JumpBooster(2040, 200),
+            new JumpBooster(2360, 200),
+            new JumpBooster(2460, 200),
             
             
         };

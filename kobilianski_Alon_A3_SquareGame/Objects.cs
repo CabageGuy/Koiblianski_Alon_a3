@@ -58,6 +58,16 @@ public class Objects
             new Objects(new Vector2(2000, 230)),
             new Objects(new Vector2(2040, 230)),
             new Objects(new Vector2(2080, 230)),
+            new Objects(new Vector2(2380, 230)),
+            new Objects(new Vector2(2380, 250)),
+            new Objects(new Vector2(2380, 270)),
+            new Objects(new Vector2(2380, 230)),
+            new Objects(new Vector2(2380, 200)),
+            new Objects(new Vector2(2380, 300)),
+            new Objects(new Vector2(2480, 300)),
+            new Objects(new Vector2(2480, 270)),
+            new Objects(new Vector2(2480, 240)),
+            new Objects(new Vector2(2480, 200)),
 
         };
     }
