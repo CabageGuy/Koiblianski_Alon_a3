@@ -13,6 +13,7 @@ public class Game
     Music backgroundMusic;
     Sound JumpBoost;
     Sound GameOver;
+    Music YouWin;
     
     
     public void Setup()
@@ -24,6 +25,7 @@ public class Game
         backgroundMusic = Audio.LoadMusic("../../../../assets/Sound/BGmusic.MP3");
         JumpBoost = Audio.LoadSound("../../../../assets/Sound/JumpBoost.MP3");
         GameOver = Audio.LoadSound("../../../../assets/Sound/GameOver.MP3");
+        YouWin = Audio.LoadMusic("../../../../assets/Sound/YouWin.MP3");
         Audio.Play(backgroundMusic);
         
 
@@ -47,6 +49,26 @@ public class Game
                 RestartGame(); // Restart the game when 'R' is pressed
             }
             return;
+        }
+
+        if (player.position.X >= 3000)
+        {
+            // Game is won
+            Window.ClearBackground(Color.Green);  // Change background to indicate win state
+            Draw.FillColor = Color.White;
+            Text.Draw("You Win!", 30, 100);
+            Text.Draw($"Score: {score}", 30, 140);
+            Text.Draw("Press R to Restart", 30, 180);
+            Audio.Stop(backgroundMusic);
+            Audio.Play(YouWin);
+
+            // Check for restart input
+            if (Input.IsKeyboardKeyDown(KeyboardInput.R))
+            {
+                RestartGame(); // Restart the game when 'R' is pressed
+                Audio.Play(backgroundMusic);
+            }
+            return;  // Return early to stop further updates and rendering
         }
 
         // Render game objects
@@ -103,6 +125,7 @@ public class Game
         Draw.LineColor = Color.Black;
         Draw.FillColor = Color.Black;
         Draw.Rectangle(0 - (int)cameraOffset.X, 320, 3000, 80);
+
     }
 
     public void RestartGame()
@@ -113,6 +136,7 @@ public class Game
         score = 0;
         cameraOffset = Vector2.Zero;
         Audio.Stop(GameOver);
+        Audio.Stop(YouWin);
         Audio.Play(backgroundMusic);
     }
 
