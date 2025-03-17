@@ -89,7 +89,7 @@ public class Coins
         if (!isCollected)
         {
             Draw.FillColor = Color.Yellow;
-            Draw.Circle((int)(position.X - cameraOffset.X), (int)position.Y, radius);
+            Draw.Circle((position.X - cameraOffset.X), position.Y, radius);
             
         }
     }

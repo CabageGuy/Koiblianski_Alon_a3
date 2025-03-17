@@ -24,7 +24,7 @@ public class Player
         Draw.FillColor = Color.Red;
         int playerWidth = 40;
         int playerHeight = 40;
-        Draw.Rectangle((int)(position.X - cameraOffset.X), (int)position.Y, playerWidth, playerHeight);
+        Draw.Rectangle((position.X - cameraOffset.X), position.Y, playerWidth, playerHeight);
     }
 
     public void Update()

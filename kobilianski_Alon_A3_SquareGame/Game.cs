@@ -123,7 +123,7 @@ public class Game
         Draw.LineSize = 1;
         Draw.LineColor = Color.Black;
         Draw.FillColor = Color.Black;
-        Draw.Rectangle(0 - (int)cameraOffset.X, 320, 3000, 80);
+        Draw.Rectangle(0 - cameraOffset.X, 320, 3000, 80);
 
     }
 
