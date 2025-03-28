@@ -17,12 +17,12 @@ public class JumpBooster
         if (IsActive)
         {
             Draw.FillColor = Color.Green; 
-            Draw.Circle((int)(Position.X - cameraOffset.X), (int)Position.Y, Radius);
+            Draw.Circle((Position.X - cameraOffset.X), Position.Y, Radius);
         }
     }
 
     public bool CheckCollision(Player player)
-    {
+    { 
         int playerSize = 40; 
 
         Vector2 boosterCenter = new Vector2(Position.X + Radius, Position.Y + Radius);

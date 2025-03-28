@@ -9,7 +9,7 @@ public class Game
     bool isGameOver = false;
     int score = 0;
     JumpBooster[] jumpBoosters;
-    Color DarkBlue = new Color(107,171,255 );
+    Color DarkBlue = new Color(107,171,255);
     Music backgroundMusic;
     Sound JumpBoost;
     Sound GameOver;
@@ -28,7 +28,6 @@ public class Game
         YouWin = Audio.LoadMusic("../../../../assets/Sound/YouWin.MP3");
         Audio.Play(backgroundMusic);
         
-
     }
 
     public void Update()
@@ -124,7 +123,7 @@ public class Game
         Draw.LineSize = 1;
         Draw.LineColor = Color.Black;
         Draw.FillColor = Color.Black;
-        Draw.Rectangle(0 - (int)cameraOffset.X, 320, 3000, 80);
+        Draw.Rectangle(0 - cameraOffset.X, 320, 3000, 80);
 
     }
 
